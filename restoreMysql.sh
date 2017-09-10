@@ -120,6 +120,8 @@ for BANCO in $DATABASES
 do
   echo "Restore $BANCO"
   echo "$DIR_ORIGEM"
+  mysql $OPTMYSQL -e"DROP DATABASE IF EXISTS $BANCO"
+  mysql $OPTMYSQL -e"CREATE DATABASE $BANCO"
   cd $DIR_ORIGEM
   cd $DESTINATION/$BANCO/
   time ls -S *.sql.gz | 

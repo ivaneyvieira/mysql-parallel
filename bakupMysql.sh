@@ -158,7 +158,8 @@ do
   # Run one job for each table we are dumping.
   time echo $TABLES |
     $PARALLEL -d ' ' --trim=rl -I ,  echo "--Dumping table ,." \&\& \
-      mysqldump -C $OPTMYSQL --skip-lock-tables --add-drop-table \
+      mysqldump -C $OPTMYSQL  --add-drop-table \
+      --opt --single-transaction  --quick    \
       --skip-routines --skip-triggers \
       $BANCO  , \| $GZIP \> $DIR_BANCO/,.sql.gz
 done
